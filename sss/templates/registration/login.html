@@ -1,0 +1,35 @@
+{% extends "form.html" %}
+
+{% block form %}
+
+  <h1>Log in</h1>
+
+  <p>
+    {{message|safe}}
+  </p>
+
+  {% if form.errors %}
+    <p style="color:red">Emailadres en/of wachtwoord incorrect. Probeer opnieuw.</p>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <table>
+      <tr>
+        <th><label for="id_username">Emailadres:</label></th>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <th>{{ form.password.label_tag }}</th>
+        <td>{{ form.password }}</td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><input type="submit" value="Inloggen"></td>
+      </tr>
+    </table>
+    (Wachtwoord vergeten? Reset dan <a href="{% url 'password_reset' %}">hier</a> je wachtwoord!)
+  </form>
+
+{% endblock %}

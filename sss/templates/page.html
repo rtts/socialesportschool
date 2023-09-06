@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+{% load thumbnail %}
+
+{% block title %}{{page.title}}{% endblock %}
+{% block extrahead %}
+  <meta property="og:title" content="De Sociale Sportschool">
+  <meta property="og:description" content="De Sociale Sportschool combineert een serieuze work-out met een sociale component: sporters gaan met ouderen in een rolstoel samen op bootcamp! Rolstoelen worden als fitnessapparaten gebruikt.">
+  <meta name="description" content="De Sociale Sportschool combineert een serieuze work-out met een sociale component: sporters gaan met ouderen in een rolstoel samen op bootcamp! Rolstoelen worden als fitnessapparaten gebruikt.">
+  <meta property="og:image" content="http://www.socialesportschool.nl/media/Sociale_Sportschool_foto_Ben_Nienhuis_06.jpg">
+{% endblock %}
+
+{% block content %}
+  <main>
+    {% for section in sections %}
+      {% if section.visibility != 3 %}
+
+        {% if section.type == 2 or section.type == 3 %}
+          <section class="agenda {% if section.type == 3 %}wide{% endif %}">
+            <h1>Agenda</h1>
+            <a href="?sort=city" class="filter {% if sort == 'city' %}current{% endif %}">op plaats</a>
+            <a href="?sort=date" class="filter {% if sort == 'date' %}current{% endif %}">op datum</a>
+            <div class="agenda_container">
+              {% for camp in bootcamps %}
+                <div class="agenda_item {% if forloop.first %}first{% endif %}">
+                  <div class="date">
+                    <div class="month">
+                      {{camp.date|date:"N"}}
+                    </div>
+                    <div class="day">
+                      {{camp.date|date:"d"}}
+                    </div>
+                  </div>
+                  <div class="city">
+                    {{camp.get_city}}
+                  </div>
+                  <div class="time">
+                    {% if camp.start_time and camp.end_time %}
+                      {{camp.start_time}} - {{camp.end_time}}
+                    {% endif %}
+                  </div>
+                  <div class="location">
+                    <b>start:</b> {{camp.get_location|default:"onbekend"}}
+                  </div>
+                  {% comment %}
+                  <div class="link">
+                    <img src="{% static 'pijl.jpg' %}"> aanmelden
+                  </div>
+                  {% endcomment %}
+                  {% if section.type == 3 %}
+                    <div class="logos">
+                      {% if camp.zorglocatie.get_logo %}
+                        <img src="{% thumbnail camp.zorglocatie.get_logo 100x100 %}">
+                      {% endif %}
+                      {% if camp.sportschool.logo %}
+                        <img src="{% thumbnail camp.sportschool.get_logo 100x100 %}">
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="agenda_content" style="display:none">
+                  {% if camp.info %}
+                    {{camp.info|safe}}
+                  {% endif %}
+                  {% if camp.participants.count < camp.places %}
+                    <a class="button" href="{% url 'participate' camp.pk %}">Aanmelden</a>
+                  {% else %}
+                    <b class="blue" style="font-size: 1.5em">Deze bootcamp is VOL!</b>
+                  {% endif %}
+                  <address>
+                    {{camp.get_location}}
+                  </address>
+                </div>
+              {% endfor %}
+            </div>
+            {% if section.button %}
+              <a class="button" href="{{section.hyperlink}}">{{section.button}}</a>
+            {% endif %}
+          </section>
+
+        {% elif section.type == 4 %}
+          <section class="partners color{{section.color}} visibility{{section.visibility}}">
+            {% if section.title %}
+              <h1>{{ section.title }}</h1>
+            {% endif %}
+
+            <ul>
+              {% for partner in section.partners_sport.all %}
+                {% if partner.logo %}
+                  <li>
+                    <a href="{{partner.website}}"><img src="{% thumbnail partner.logo 200x200  %}"></a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% for partner in section.partners_locatie.all %}
+                {% if partner.logo %}
+                  <li>
+                    <a href="{{partner.website}}"><img src="{% thumbnail partner.logo 200x200  %}"></a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% for partner in section.partners_zorg.all %}
+                {% if partner.logo %}
+                  <li>
+                    <a href="{{partner.website}}"><img src="{% thumbnail partner.logo 200x200  %}"></a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% for partner in section.partners_gemeenten.all %}
+                {% if partner.logo %}
+                  <li>
+                    <a href="{{partner.website}}"><img src="{% thumbnail partner.logo 200x200  %}"></a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            {% if section.hyperlink and section.image %}
+              <a href="{{ section.hyperlink }}"><img src="{% thumbnail section.image 800x800 %}"></a>
+            {% elif section.image %}
+              <img src="{% thumbnail section.image 800x800 %}">
+            {% endif %}
+            {% if section.contents %}
+              <div class="section_content {% if section.color == 3 %}white{% endif %}">
+                {{section.contents|safe}}
+              </div>
+            {% endif %}
+            {% if section.video %}
+              <div class="video">
+                {% video section.video '800x600' %}
+              </div>
+            {% endif %}
+
+            {% if section.button %}
+              <a class="button" href="{{section.hyperlink}}">{{section.button}}</a>
+            {% endif %}
+          </section>
+
+        {% else %}
+            <section class="color{{section.color}} visibility{{section.visibility}}">
+            {% if section.title %}
+              <h1>{{ section.title }}</h1>
+            {% endif %}
+            {% if section.hyperlink and section.image %}
+              <a href="{{ section.hyperlink }}"><img src="{% thumbnail section.image 800x800 %}"></a>
+            {% elif section.image %}
+              <img src="{% thumbnail section.image 800x800 %}">
+            {% endif %}
+            {% if section.contents %}
+              <div class="section_content {% if section.color == 3 %}white{% endif %}">
+                {{section.contents|safe}}
+              </div>
+            {% endif %}
+            {% if section.video %}
+              <div class="video">
+                {% video section.video '800x600' %}
+              </div>
+            {% endif %}
+
+            {% if section.button %}
+              <a class="button" href="{{section.hyperlink}}">{{section.button}}</a>
+            {% endif %}
+          </section>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="{% static 'imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'masonry.pkgd.min.js' %}"></script>
+  <script>
+    $(function() {
+        var $grid = $('main').masonry({
+            itemSelector: 'section',
+            gutter: 16,
+        });
+
+        $grid.masonry('layout');
+
+        $grid.imagesLoaded().progress(function() {
+            $grid.masonry('layout');
+        });
+
+        $('.agenda_item').click(function() {
+            $(this).next().animate({height: 'toggle'}, function() {
+                $grid.masonry('layout');
+            });
+        });
+
+        $("address").each(function(){
+            var apikey = 'AIzaSyBwQf9yfznNycaXoUV4HCAlpUyZIIOHr8Q';
+            var source = 'https://www.google.com/maps/embed/v1/place?q=' + encodeURIComponent($(this).text()) + '&key=' + apikey;
+            var embed = '<iframe width="100%" height="300" style="border:none" src="' + source +'"></iframe>';
+            $(this).html(embed);
+        });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}<style>.hamburger { display:none !important }</style>{% endblock %}
+{% block handheld %}{% endblock %}
+
+{% block navigation %}
+  <div class="heading">
+    <a href="{% url 'bootcamps' %}?org={{current_org.rank}}">Mijn SSS</a> {% block breadcrumbs %}{% endblock %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <section class="plain">
+    {% block form %}
+    {% endblock %}
+  </section>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

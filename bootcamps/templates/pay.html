@@ -1,0 +1,30 @@
+{% extends 'form.html' %}
+
+{% block breadcrumbs %}
+  / Nieuwe {% if orgtype == 'zorg' %}zorglocatie{% else %}sportclub{% endif %}
+{% endblock %}
+
+{% block form %}
+  <h1>Nieuwe {% if orgtype == 'zorg' %}zorglocatie{% else %}sportclub{% endif %} opgeven</h1>
+
+  <p>
+    {{message}}
+  </p>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <table>
+      {{form.as_table}}
+      <tr>
+        <th></th>
+        <td>
+          {{extra_message|safe}}
+        </td>
+      <tr>
+        <th></th>
+        <td><input type="submit" value="verstuur"></td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+  <div class="heading">
+    Algemene Voorwaarden
+  </div>
+{% endblock %}
+
+{% block content %}
+  <section class="plain">
+    {{terms|safe}}
+  </section>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

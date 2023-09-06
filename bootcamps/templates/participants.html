@@ -1,0 +1,36 @@
+{% extends 'form.html' %}
+{% load static %}
+
+{% block breadcrumbs %}
+/ Deelnemers aan {{bootcamp}}
+{% endblock %}
+
+{% block content %}
+  <section class="plain">
+    <h1>Deelnemers aan {{bootcamp}}</h1>
+
+    {% if bootcamp.participants.exists %}
+      <table class="bootcamps">
+        <tr>
+          <th>Naam</th>
+          <th>Email</th>
+          <th>Verwijderen</th>
+        </tr>
+        {% for p in bootcamp.participants.all %}
+          <tr class="{% cycle 'odd' 'even' %}">
+            <td>{{p.name}}</td>
+            <td>{{p.email}}</td>
+            <td><a class="editlink" href="{% url 'delete_participant' p.pk %}?org={{current_org.rank}}" style="color:red" onclick="return window.confirm('Weet u zeker dat u deze deelnemer wilt verwijderen?')">✕</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <small>(geen deelnemers beschikbaar)</small>
+    {% endif %}
+    <div class="spacer"></div>
+    <a class="button" href="{% url 'participant' bootcamp.pk %}?org={{current_org.rank}}">deelnemer toevoegen</a><br>
+    {% if bootcamp.participants.exists %}
+      <a class="button" href="mailto:{% for p in bootcamp.participants.all %}{{p.email}}{% if not forloop.last %},{% endif %}{% endfor %}">email alle deelnemers</a>
+    {% endif %}
+  </section>
+{% endblock %}

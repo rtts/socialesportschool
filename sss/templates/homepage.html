@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block middle %}
+  {% for section in sections.0 %}
+    <section>
+      {{section.contents}}
+    </section>
+  {% endfor %}
+{% endblock %}
+
+{% block left %}
+  {% for section in sections.1 %}
+    <section>
+      {{section.contents}}
+    </section>
+  {% endfor %}
+{% endblock %}
+
+{% block right %}
+  {% for section in sections.2 %}
+    <section>
+      {{section.contents}}
+    </section>
+  {% endfor %}
+{% endblock %}

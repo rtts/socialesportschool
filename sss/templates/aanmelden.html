@@ -1,0 +1,21 @@
+{% extends 'form.html' %}
+
+{% block form %}
+  <h1>Aanmelden</h1>
+
+  <p>
+    {{message|safe}}
+  </p>
+
+  <form method="POST" novalidate>
+    {% csrf_token %}
+
+    <table>
+      {{form.as_table}}
+      <tr>
+        <th></th>
+        <td><input type="submit" value="verstuur"></td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}

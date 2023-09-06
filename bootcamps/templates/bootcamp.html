@@ -1,0 +1,29 @@
+{% extends 'form.html' %}
+
+{% block breadcrumbs %}
+  / Bootcamp {% if add %}toevoegen{% else %}bewerken{% endif %}
+{% endblock %}
+
+{% block form %}
+  <h1>Bootcamp {% if add %}toevoegen{% else %}bewerken{% endif %}</h1>
+  <form method="POST" novalidate>
+    {% csrf_token %}
+    <table>
+      {{form.as_table}}
+      <tr>
+        <th></th>
+        <td><input type="submit" value="Opslaan"></td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}
+
+{% block script %}
+  <script>
+    $(function (){
+        $("#id_date").datepicker({
+            dateFormat: "dd-mm-yy"
+        });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,141 @@
+{% load static %}
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Factuur</title>
+    <style>
+      body {
+          font-family: Verdana, sans;
+          font-size: 10pt;
+          background: rgb(204,204,204);
+          line-height: 1.75;
+      }
+      page[size="A4"] {
+          position: relative;
+          background: white;
+          width: 21cm;
+          height: 29.7cm;
+          display: block;
+          margin: 0 auto;
+          margin-bottom: 0.5cm;
+          box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+
+          padding: 2.5cm;
+          padding-top: 5cm;
+          box-sizing: border-box;
+      }
+      @media print {
+          @page {
+              margin: 0;
+          }
+          body, page[size="A4"] {
+              margin: 0;
+              box-shadow: none;
+              background: white;
+          }
+          .noprint {
+              display: none;
+          }
+      }
+
+      .blue {
+          color: #0072a8;
+      }
+      .bold {
+          font-weight: bold;
+      }
+
+      #logo, #details {
+          width: 5cm;
+          position: absolute;
+          top: 0;
+          right: 2cm;
+          white-space: nowrap;
+      }
+      #logo img {
+          display: block;
+          width: 100%;
+      }
+      #details {
+          top: auto;
+          bottom: 2cm;
+          right: 2cm;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="noprint" onclick="window.print(); return false" href="">Print deze factuur</a>
+    <page size="A4">
+      <div id="logo" class="blue">
+        <img src="{% static 'logo.png' %}">
+        <p>
+          Stichting Sociale Sportschool<br>
+          Oude Vlijmenseweg 66<br>
+          5223 GN ’s-Hertogenbosch
+        </p>
+      </div>
+
+      <div id="details">
+        <p>
+          IBAN NL53 RABO 0319 7181 82<br>
+          KvK 68792743<br>
+          BTW: NL8575.94.461.B01
+        </p>
+        <p>
+          <a href="http://www.socialesportschool.nl/">www.socialesportschool.nl</a><br>
+          <a href="mailto:info@socialesportschool.nl">info@socialesportschool.nl</a>
+        </p>
+      </div>
+
+      <div class="blue bold">
+        <p>
+          FACTUUR:<br>
+          {{invoice.description|capfirst}}<br>
+          Kenmerk: {{invoice.identifier}}
+        </p>
+      </div>
+
+      <p>
+        ’s-Hertogenbosch, {{invoice.date}}
+      </p>
+
+      <p>
+        <b>{{org.name}}</b><br>
+        t.a.v. {{invoice.user.get_full_name}}<br>
+        {{org.street}} {{org.number}}<br>
+        {{org.zipcode}} {{org.city}}
+      </p>
+
+      <p>
+        Beste {{invoice.user.get_full_name}},
+
+        Hierbij ontvangt u de factuur voor {{invoice.description}}.
+      </p>
+
+      <table width="100%">
+        <tr>
+          <td>{{invoice.description|capfirst}}</td>
+          <td>€{{subtotal|stringformat:"1.2f"}}</td>
+        </tr>
+        <tr>
+          <td><i>Btw 21%</i></td>
+          <td>€{{vat|stringformat:"1.2f"}}</td>
+        </tr>
+        <tr>
+          <td><b>Totaal</b></td>
+          <td><b>€{{total|stringformat:"1.2f"}}</b></td>
+        </tr>
+      </table>
+
+      <p>
+        Gelieve het totaalbedrag binnen 30 dagen over te maken o.v.v. het factuurkenmerk
+      </p>
+      <p>
+        Met vriendelijke groet,<br>
+        Stichting Sociale Sportschool
+      </p>
+    </page>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'form.html' %}
+
+{% block content %}
+  <section class="plain">
+    <h1>Welkom op Mijn Sociale Sportschool</h1>
+    <p>
+      Om de aanmelding compleet te maken kiest u een van de onderstaande opties:
+    </p>
+
+    <a class="button" href="{% url 'paybig' %}">Zorgorganisatie aanmelden</a><br>
+    <a class="button" href="{% url 'paysmall' %}">Sportclub aanmelden</a>
+  </section>
+{% endblock %}

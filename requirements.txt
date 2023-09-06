@@ -1,0 +1,9 @@
+Django==2.2.24
+django-ckeditor==5.7.0
+django-embed-video==1.2.0
+django-registration==2.2
+django-sass-processor==0.5.4
+django-jquery-ui
+easy_thumbnails
+psycopg2==2.8.6
+git+https://github.com/JaapJoris/django-numberedmodel.git

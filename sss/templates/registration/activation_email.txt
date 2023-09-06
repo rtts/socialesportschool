@@ -1,0 +1,8 @@
+Beste {{user.first_name}},
+
+U heeft een account aangemaakt op Mijn Sociale Sportschool. Wanneer u op de volgende link klikt wordt dit account geactiveerd:
+
+http://{{site.domain}}{% url 'registration_activate' activation_key %}
+
+Met vriendelijke groeten,
+Het Sociale Sportschool team

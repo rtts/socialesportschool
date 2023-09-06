@@ -1,0 +1,72 @@
+{% extends 'form.html' %}
+{% load static %}
+
+{% block account %}
+  <a href="{% url 'logout' %}">LOG UIT</a>
+{% endblock %}
+
+{% block breadcrumbs %}
+/ Bootcamps
+{% endblock %}
+
+{% block content %}
+  <section class="plain with_sidebar">
+    <div>
+      {% if current_org.get_logo %}
+        <img src="{{current_org.get_logo.url}}" width="100%">
+        <div class="spacer"></div>
+      {% endif %}
+      {% for org in orgs %}
+        <a class="editlink" style="float:right" href="{% url 'change_org' forloop.counter %}">✎</a>
+        <a href="?org={{forloop.counter}}" class="org">
+          <div {% if org == current_org %}class="active"{% endif %}>
+            <b>{{org.name}}</b>
+          </div>
+        </a>
+      {% endfor %}
+      {% if caregiver %}
+        <small>
+          <a style="font-weight: normal" href="{% url 'paybig' %}">+ nieuwe zorglocatie</a><br>
+          {% comment %}<a style="font-weight: normal" href="{% url 'paysmall' %}">+ nieuwe sportclub</a><br>{% endcomment %}
+        </small>
+      {% endif %}
+    </div>
+
+    <div>
+      <a class="button add_button" href="{% url 'add_bootcamp' %}?org={{current_org.rank}}">bootcamp toevoegen</a>
+      <h1>Geplande Bootcamps</h1>
+      <table class="bootcamps">
+        <tr>
+          <th>datum</th>
+          <th>tijd</th>
+          <th>zorglocatie - sportclub</th>
+          <th>sporters</th>
+          <th>ouderen</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for b in bootcamps %}
+          <tr class="{% cycle 'odd' 'even' %}">
+            <td>{{b.date}}</td>
+            <td>{{b.start_time}} - {{b.end_time}}</td>
+            <td>{{b.zorglocatie}} - {{b.sportschool}}</td>
+            <td><a href="{% url 'participants' b.pk %}?org={{current_org.rank}}">{{b.participants.count}}</a></td>
+            <td>{{b.places}}</td>
+            <td><a class="editlink" href="{% url 'change_bootcamp' b.pk %}?org={{current_org.rank}}">✎</a></td>
+            <td><a class="editlink" href="{% url 'delete_bootcamp' b.pk %}?org={{current_org.rank}}" style="color:red" onclick="return window.confirm('Weet u zeker dat u deze bootcamp wilt verwijderen?')">✕</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </section>
+{% endblock %}
+
+{% comment %}
+{% block footer %}
+  <footer>
+    <div class="wrapper">
+      <small>Geld over? U kunt <a href="{% url 'paybig' %}">nog een zorgorganisatie</a> of <a href="{% url 'paysmall' %}">nog een sportclub</a> toevoegen aan uw account!</small>
+    </div>
+  </footer>
+{% endblock %}
+{% endcomment %}

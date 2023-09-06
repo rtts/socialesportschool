@@ -1,0 +1,23 @@
+{% extends 'form.html' %}
+
+{% block navigation %}
+  <div class="heading">
+    Aanmelden
+  </div>
+{% endblock %}
+
+{% block form %}
+  <h1>Meld je aan voor de bootcamp op {{bootcamp.date}}</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{form.as_table}}
+      <tr><th></th><td><input type="submit" value="Opslaan"></td></tr>
+    </table>
+  </form>
+
+  <p>
+    {{message|safe}}
+  </p>
+{% endblock %}

@@ -1,0 +1,101 @@
+
+
+
+
+<!doctype html>
+<html>
+  <head>
+    <title>Sociale Sportschool - </title>
+    <meta charset="utf-8">
+    
+    <link rel="icon" href="../../../../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../../../static/main2.css">
+    <link rel="stylesheet" type="text/css" href="../../../../static/css/jquery-ui/smoothness/jquery-ui.css">
+    <style>.hamburger { display:none !important }</style>
+  </head>
+  <body>
+    <div class="header_container">
+      <header>
+        <a href="../../../../index.html">
+          <img id="home" src="../../../../static/home.jpg">
+        </a>
+        <button class="hamburger">&#9776;</button>
+        <a href="../../../../index.html">
+          <img id="logo" src="../../../../static/logo.png">
+        </a>
+
+        <nav>
+          
+  <div class="heading">
+    Aanmelden
+  </div>
+
+        </nav>
+
+        <div class="account">
+          
+            
+              <a href="../../../index.html">LOG IN</a>
+            
+          
+        </div>
+
+      </header>
+    </div>
+
+    
+      <div class="banner mobile" ></div>
+    
+    <div class="banner desktop" ></div>
+
+    
+  <section class="plain">
+    
+  <h1>Meld je aan voor de bootcamp op 17 januari 2025</h1>
+
+  <form method="POST">
+    <input type="hidden" name="csrfmiddlewaretoken" value="Rnlz04j5vRWQQkIpQvhdsDMeNgtwBa7nbiMkIh9zjzIonqaBJPmhZBTaaB7PF38A">
+    <table>
+      <tr><th><label for="id_name">Naam:</label></th><td><input type="text" name="name" maxlength="255" required id="id_name"></td></tr>
+<tr><th><label for="id_email">Emailadres:</label></th><td><input type="email" name="email" maxlength="254" required id="id_email"></td></tr>
+      <tr><th></th><td><input type="submit" value="Opslaan"></td></tr>
+    </table>
+  </form>
+
+  <p>
+    Privacy-verklaring. We gebruiken je e-mail alleen om je te kunnen bereiken als het tijdstip verandert of als een bootcamp onverhoopt niet doorgaat. Ook attenderen we je incidenteel via e-mail als er nieuwe bootcampdata aan de agenda zijn toegevoegd op deze locatie. Als je er geen prijs op stelt om op de hoogte te worden gehouden van nieuwe data, laat het ons dan weten via info@socialesportschool.nl
+  </p>
+
+  </section>
+
+
+    
+
+
+    <script src="../../../../static/js/jquery.js"></script>
+    <script src="../../../../static/js/jquery-ui.js"></script>
+    <script>
+      $('.hamburger').click(function() {
+          $('.hamburger_menu').animate({width: 'toggle'});
+          $('.hamburger').toggle();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+          var links = document.querySelectorAll('a');
+          for (var link of links) {
+              var a = new RegExp('/' + window.location.host + '/');
+              if (!a.test(link.href)) {
+                  link.addEventListener('click', function(event) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      window.open(this.href, '_blank');
+                  });
+              }
+          }
+      });
+    </script>
+    
+    
+  </body>
+</html>

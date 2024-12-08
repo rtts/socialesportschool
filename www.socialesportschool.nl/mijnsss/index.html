@@ -1,0 +1,116 @@
+
+
+
+
+<!doctype html>
+<html>
+  <head>
+    <title>Sociale Sportschool - </title>
+    <meta charset="utf-8">
+    
+    <link rel="icon" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/main2.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/jquery-ui/smoothness/jquery-ui.css">
+    <style>.hamburger { display:none !important }</style>
+  </head>
+  <body>
+    <div class="header_container">
+      <header>
+        <a href="../index.html">
+          <img id="home" src="../static/home.jpg">
+        </a>
+        <button class="hamburger">&#9776;</button>
+        <a href="../index.html">
+          <img id="logo" src="../static/logo.png">
+        </a>
+
+        <nav>
+          
+  <div class="heading">
+    <a href="index.html%3Forg=.html">Mijn SSS</a> 
+  </div>
+
+        </nav>
+
+        <div class="account">
+          
+            
+              <a href="index.html">LOG IN</a>
+            
+          
+        </div>
+
+      </header>
+    </div>
+
+    
+      <div class="banner mobile" ></div>
+    
+    <div class="banner desktop" ></div>
+
+    
+  <section class="plain">
+    
+
+  <h1>Log in</h1>
+
+  <p>
+    Hier kun je inloggen met je <i>MIJN SSS</i> account. MIJN SSS is de beheerdersomgeving voor zorglocaties en sportclubs die zijn aangesloten bij het Sociale Sportschool Platform. Ook meedoen? Meer informatie kun je vinden op <a href="../meedoen/index.html">meedoen</a>-pagina. Of maak direct een <a href="../aanmelden/index.html">account</a> aan.
+  </p>
+
+  
+
+  <form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="wKNMMYvbao0nD7nFEsFrNyO38jZEq6xcQFexublFY6MVadPRxMKvkwVZvEDXuZyp">
+    <input type="hidden" name="next" value="/mijnsss/" />
+    <table>
+      <tr>
+        <th><label for="id_username">Emailadres:</label></th>
+        <td><input type="text" name="username" autofocus required id="id_username"></td>
+      </tr>
+      <tr>
+        <th><label for="id_password">Wachtwoord:</label></th>
+        <td><input type="password" name="password" required id="id_password"></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><input type="submit" value="Inloggen"></td>
+      </tr>
+    </table>
+    (Wachtwoord vergeten? Reset dan <a href="../wachtwoordvergeten/index.html">hier</a> je wachtwoord!)
+  </form>
+
+
+  </section>
+
+
+    
+
+
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/jquery-ui.js"></script>
+    <script>
+      $('.hamburger').click(function() {
+          $('.hamburger_menu').animate({width: 'toggle'});
+          $('.hamburger').toggle();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+          var links = document.querySelectorAll('a');
+          for (var link of links) {
+              var a = new RegExp('/' + window.location.host + '/');
+              if (!a.test(link.href)) {
+                  link.addEventListener('click', function(event) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      window.open(this.href, '_blank');
+                  });
+              }
+          }
+      });
+    </script>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,112 @@
+
+
+
+
+<!doctype html>
+<html>
+  <head>
+    <title>Sociale Sportschool - </title>
+    <meta charset="utf-8">
+    
+    <link rel="icon" href="../static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/main2.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/jquery-ui/smoothness/jquery-ui.css">
+    <style>.hamburger { display:none !important }</style>
+  </head>
+  <body>
+    <div class="header_container">
+      <header>
+        <a href="../index.html">
+          <img id="home" src="../static/home.jpg">
+        </a>
+        <button class="hamburger">&#9776;</button>
+        <a href="../index.html">
+          <img id="logo" src="../static/logo.png">
+        </a>
+
+        <nav>
+          
+  <div class="heading">
+    <a href="../mijnsss/index.html%3Forg=.html">Mijn SSS</a> 
+  </div>
+
+        </nav>
+
+        <div class="account">
+          
+            
+              <a href="../mijnsss/index.html">LOG IN</a>
+            
+          
+        </div>
+
+      </header>
+    </div>
+
+    
+      <div class="banner mobile" ></div>
+    
+    <div class="banner desktop" ></div>
+
+    
+  <section class="plain">
+    
+  <h1>Aanmelden</h1>
+
+  <p>
+    Fijn dat jouw zorglocatie of sportclub zich wil aansluiten bij het Sociale Sportschool platform. De eerste stap is om een <i>MIJN SSS</i> account aan te maken. Dit kan met het onderstaande formulier.
+
+<p>Nadat je account is geactiveerd, beland je in de <i>MIJN SSS</i>-beheerdersomgeving. Daar kun je het logo van je organisatie uploaden en bootcamps beheren. Mocht je nog vragen hebben dan kun je natuurlijk altijd contact opnemen met info@socialesportschool.nl
+
+<p>Heb je al een account? Dan ben je hier op het verkeerde adres. Navigeer snel naar de <a href="../login/index.html">inlogpagina</a> om in te loggen!
+  </p>
+
+  <form method="POST" novalidate>
+    <input type="hidden" name="csrfmiddlewaretoken" value="u8C8l4ezEqevNIYcCsTkoC9OBU66gZyIO33T3h43s803kOqovMYoVAgKYfKpkSzV">
+
+    <table>
+      <tr><th><label for="id_first_name">Voornaam:</label></th><td><input type="text" name="first_name" required id="id_first_name"></td></tr>
+<tr><th><label for="id_last_name">Achternaam:</label></th><td><input type="text" name="last_name" required id="id_last_name"></td></tr>
+<tr><th><label for="id_email">Emailadres:</label></th><td><input type="email" name="email" required id="id_email"></td></tr>
+<tr><th><label for="id_password1">Kies een wachtwoord:</label></th><td><input type="password" name="password1" required id="id_password1"></td></tr>
+<tr><th><label for="id_password2">Herhaal het wachtwoord:</label></th><td><input type="password" name="password2" required id="id_password2"></td></tr>
+      <tr>
+        <th></th>
+        <td><input type="submit" value="verstuur"></td>
+      </tr>
+    </table>
+  </form>
+
+  </section>
+
+
+    
+
+
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/jquery-ui.js"></script>
+    <script>
+      $('.hamburger').click(function() {
+          $('.hamburger_menu').animate({width: 'toggle'});
+          $('.hamburger').toggle();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+          var links = document.querySelectorAll('a');
+          for (var link of links) {
+              var a = new RegExp('/' + window.location.host + '/');
+              if (!a.test(link.href)) {
+                  link.addEventListener('click', function(event) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      window.open(this.href, '_blank');
+                  });
+              }
+          }
+      });
+    </script>
+    
+    
+  </body>
+</html>

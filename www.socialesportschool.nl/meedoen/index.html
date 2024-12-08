@@ -493,13 +493,6 @@ Webontwikkeling: <br><A target="_blank" HREF="http://returntothesource.nl/">Retu
                 $grid.masonry('layout');
             });
         });
-
-        $("address").each(function(){
-            var apikey = 'AIzaSyBwQf9yfznNycaXoUV4HCAlpUyZIIOHr8Q';
-            var source = 'https://www.google.com/maps/embed/v1/place?q=' + encodeURIComponent($(this).text()) + '&key=' + apikey;
-            var embed = '<iframe width="100%" height="300" style="border:none" src="https://www.socialesportschool.nl/meedoen/'&#32;+&#32;source&#32;+'"></iframe>';
-            $(this).html(embed);
-        });
     });
   </script>
 
